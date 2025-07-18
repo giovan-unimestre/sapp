@@ -1,5 +1,5 @@
 {
-    "name": "ddn/sapp",
+    "name": "unimestre/sapp",
     "description": "Simple and Agnostic PDF Parser (SAPP): Edit, manipulate and sign PDF documents usign PHP",
     "keywords": ["php", "pdf", "signature", "sign", "electronic signature"],
     "type": "library",
