@@ -19,37 +19,37 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap;
+namespace unimestre\sapp;
 
-use unimestre\sap\PDFBaseDoc;
-use unimestre\sap\PDFBaseObject;
-use unimestre\sap\PDFSignatureObject;
-use unimestre\sap\pdfvalue\PDFValueObject;
-use unimestre\sap\pdfvalue\PDFValueList;
-use unimestre\sap\pdfvalue\PDFValueReference;
-use unimestre\sap\pdfvalue\PDFValueType;
-use unimestre\sap\pdfvalue\PDFValueSimple;
-use unimestre\sap\pdfvalue\PDFValueHexString;
-use unimestre\sap\pdfvalue\PDFValueString;
-use unimestre\sap\helpers\CMS;
-use unimestre\sap\helpers\x509;
-use unimestre\sap\helpers\asn1;
-use unimestre\sap\helpers\Buffer;
-use unimestre\sap\helpers\UUID;
-use unimestre\sap\helpers\DependencyTreeObject;
-use const unimestre\sap\helpers\BLACKLIST;
-use function unimestre\sap\helpers\references_in_object;
+use unimestre\sapp\PDFBaseDoc;
+use unimestre\sapp\PDFBaseObject;
+use unimestre\sapp\PDFSignatureObject;
+use unimestre\sapp\pdfvalue\PDFValueObject;
+use unimestre\sapp\pdfvalue\PDFValueList;
+use unimestre\sapp\pdfvalue\PDFValueReference;
+use unimestre\sapp\pdfvalue\PDFValueType;
+use unimestre\sapp\pdfvalue\PDFValueSimple;
+use unimestre\sapp\pdfvalue\PDFValueHexString;
+use unimestre\sapp\pdfvalue\PDFValueString;
+use unimestre\sapp\helpers\CMS;
+use unimestre\sapp\helpers\x509;
+use unimestre\sapp\helpers\asn1;
+use unimestre\sapp\helpers\Buffer;
+use unimestre\sapp\helpers\UUID;
+use unimestre\sapp\helpers\DependencyTreeObject;
+use const unimestre\sapp\helpers\BLACKLIST;
+use function unimestre\sapp\helpers\references_in_object;
 
-use function unimestre\sap\helpers\get_random_string;
-use function unimestre\sap\helpers\p_debug;
-use function unimestre\sap\helpers\p_debug_var;
-use function unimestre\sap\helpers\p_error;
-use function unimestre\sap\helpers\p_warning;
-use function unimestre\sap\helpers\_add_image;
-use function unimestre\sap\helpers\timestamp_to_pdfdatestring;
+use function unimestre\sapp\helpers\get_random_string;
+use function unimestre\sapp\helpers\p_debug;
+use function unimestre\sapp\helpers\p_debug_var;
+use function unimestre\sapp\helpers\p_error;
+use function unimestre\sapp\helpers\p_warning;
+use function unimestre\sapp\helpers\_add_image;
+use function unimestre\sapp\helpers\timestamp_to_pdfdatestring;
 
 // Loading the functions
-use unimestre\sap\helpers\LoadHelpers;
+use unimestre\sapp\helpers\LoadHelpers;
 if (!defined("ddn\\sapp\\helpers\\LoadHelpers"))
     new LoadHelpers;
 

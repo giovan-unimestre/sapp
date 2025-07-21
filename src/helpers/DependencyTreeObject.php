@@ -19,8 +19,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap\helpers;
-use function unimestre\sap\helpers\p_warning;
+namespace unimestre\sapp\helpers;
+use function unimestre\sapp\helpers\p_warning;
 
 /**
  * A class for the PDFObjects in the dependency tree

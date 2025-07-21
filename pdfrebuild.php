@@ -19,7 +19,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-use unimestre\sap\PDFDoc;
+use unimestre\sapp\PDFDoc;
 
 require_once('vendor/autoload.php');
 

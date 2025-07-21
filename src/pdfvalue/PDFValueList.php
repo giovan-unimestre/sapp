@@ -19,10 +19,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap\pdfvalue;
-use function unimestre\sap\helpers\p_debug_var;
-use function unimestre\sap\helpers\p_debug;
-use unimestre\sap\pdfvalue\PDFValueSimple;
+namespace unimestre\sapp\pdfvalue;
+use function unimestre\sapp\helpers\p_debug_var;
+use function unimestre\sapp\helpers\p_debug;
+use unimestre\sapp\pdfvalue\PDFValueSimple;
 
 class PDFValueList extends PDFValue {
     public function __construct($value = []) {

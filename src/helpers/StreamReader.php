@@ -19,7 +19,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap\helpers;
+namespace unimestre\sapp\helpers;
 
 /**
  * This class abstracts the reading from a stream of data (i.e. a string). The objective of

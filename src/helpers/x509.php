@@ -1,5 +1,5 @@
 <?php
-namespace unimestre\sap\helpers;
+namespace unimestre\sapp\helpers;
 /*
 // File name   : x509.php
 // Version     : 1.1

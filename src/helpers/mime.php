@@ -19,7 +19,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap\helpers;
+namespace unimestre\sapp\helpers;
 
 function mime_to_ext($mime) {
     $mime_map = [

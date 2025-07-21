@@ -19,18 +19,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap;
+namespace unimestre\sapp;
 
-use unimestre\sap\PDFObjectParser;
-use unimestre\sap\helpers\StreamReader;
-use unimestre\sap\helpers\Buffer;
-use function unimestre\sap\helpers\p_debug;
-use function unimestre\sap\helpers\p_debug_var;
-use function unimestre\sap\helpers\p_error;
-use function unimestre\sap\helpers\p_warning;
-use function unimestre\sap\helpers\show_bytes;
+use unimestre\sapp\PDFObjectParser;
+use unimestre\sapp\helpers\StreamReader;
+use unimestre\sapp\helpers\Buffer;
+use function unimestre\sapp\helpers\p_debug;
+use function unimestre\sapp\helpers\p_debug_var;
+use function unimestre\sapp\helpers\p_error;
+use function unimestre\sapp\helpers\p_warning;
+use function unimestre\sapp\helpers\show_bytes;
 
-use unimestre\sap\helpers\LoadHelpers;
+use unimestre\sapp\helpers\LoadHelpers;
 if (!defined("ddn\\sapp\\helpers\\LoadHelpers"))
     new LoadHelpers;
 

@@ -19,18 +19,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap;
+namespace unimestre\sapp;
 
-use unimestre\sap\PDFObject;
-use unimestre\sap\pdfvalue\PDFValue;
-use unimestre\sap\pdfvalue\PDFValueHexString;
-use unimestre\sap\pdfvalue\PDFValueList;
-use unimestre\sap\pdfvalue\PDFValueObject;
-use unimestre\sap\pdfvalue\PDFValueReference;
-use unimestre\sap\pdfvalue\PDFValueSimple;
-use unimestre\sap\pdfvalue\PDFValueString;
-use unimestre\sap\pdfvalue\PDFValueType;
-use function unimestre\sap\helpers\timestamp_to_pdfdatestring;
+use unimestre\sapp\PDFObject;
+use unimestre\sapp\pdfvalue\PDFValue;
+use unimestre\sapp\pdfvalue\PDFValueHexString;
+use unimestre\sapp\pdfvalue\PDFValueList;
+use unimestre\sapp\pdfvalue\PDFValueObject;
+use unimestre\sapp\pdfvalue\PDFValueReference;
+use unimestre\sapp\pdfvalue\PDFValueSimple;
+use unimestre\sapp\pdfvalue\PDFValueString;
+use unimestre\sapp\pdfvalue\PDFValueType;
+use function unimestre\sapp\helpers\timestamp_to_pdfdatestring;
 
 // This is an special object that has a set of fields
 class PDFSignatureObject extends PDFObject {

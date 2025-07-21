@@ -19,23 +19,23 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap;
+namespace unimestre\sapp;
 
-use unimestre\sap\pdfvalue\PDFValueObject;
-use unimestre\sap\pdfvalue\PDFValueSimple;
+use unimestre\sapp\pdfvalue\PDFValueObject;
+use unimestre\sapp\pdfvalue\PDFValueSimple;
 use \ArrayAccess;
 
-use unimestre\sap\helpers\Buffer;
+use unimestre\sapp\helpers\Buffer;
 
 // Loading the functions
-use unimestre\sap\helpers\LoadHelpers;
+use unimestre\sapp\helpers\LoadHelpers;
 if (!defined("ddn\\sapp\\helpers\\LoadHelpers"))
     new LoadHelpers;
 
-use function unimestre\sap\helpers\p_debug;
-use function unimestre\sap\helpers\p_debug_var;
-use function unimestre\sap\helpers\p_error;
-use function unimestre\sap\helpers\p_warning;
+use function unimestre\sapp\helpers\p_debug;
+use function unimestre\sapp\helpers\p_debug_var;
+use function unimestre\sapp\helpers\p_error;
+use function unimestre\sapp\helpers\p_warning;
 
 // The character used to end lines
 if (!defined('__EOL'))

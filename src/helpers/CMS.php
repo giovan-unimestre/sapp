@@ -1,5 +1,5 @@
 <?php
-namespace unimestre\sap\helpers;
+namespace unimestre\sapp\helpers;
 /*
 // File name   : CMS.php
 // Version     : 1.1

@@ -19,7 +19,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap\pdfvalue;
+namespace unimestre\sapp\pdfvalue;
 
 /**
  * Class to create a reference to an object

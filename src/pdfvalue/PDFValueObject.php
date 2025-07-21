@@ -19,7 +19,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap\pdfvalue;
+namespace unimestre\sapp\pdfvalue;
 
 class PDFValueObject extends PDFValue {
     public function __construct($value = []) {
@@ -39,7 +39,7 @@ class PDFValueObject extends PDFValue {
 
         foreach ($this->value as $k => $v) {
             if (isset($other->value[$k])) {
-                if (is_a($this->value[$k], "unimestre\sap\pdfvalue\PDFValue")) {
+                if (is_a($this->value[$k], "unimestre\sapp\pdfvalue\PDFValue")) {
                     $different = $this->value[$k]->diff($other->value[$k]);
                     if ($different === false) {
                         $result[$k] = $v;

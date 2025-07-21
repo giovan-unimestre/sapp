@@ -1,5 +1,5 @@
 <?php
-namespace unimestre\sap\helpers;
+namespace unimestre\sapp\helpers;
 
 class UUID {
   public static function v3($namespace, $name) {

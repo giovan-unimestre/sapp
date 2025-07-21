@@ -19,22 +19,22 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace unimestre\sap\helpers;
+namespace unimestre\sapp\helpers;
 
-use unimestre\sap\PDFBaseDoc;
-use unimestre\sap\PDFBaseObject;
-use unimestre\sap\pdfvalue\PDFValueObject;
-use unimestre\sap\pdfvalue\PDFValueList;
-use unimestre\sap\pdfvalue\PDFValueReference;
-use unimestre\sap\pdfvalue\PDFValueType;
-use unimestre\sap\pdfvalue\PDFValueHexString;
-use unimestre\sap\pdfvalue\PDFValueString;
+use unimestre\sapp\PDFBaseDoc;
+use unimestre\sapp\PDFBaseObject;
+use unimestre\sapp\pdfvalue\PDFValueObject;
+use unimestre\sapp\pdfvalue\PDFValueList;
+use unimestre\sapp\pdfvalue\PDFValueReference;
+use unimestre\sapp\pdfvalue\PDFValueType;
+use unimestre\sapp\pdfvalue\PDFValueHexString;
+use unimestre\sapp\pdfvalue\PDFValueString;
 
-use function unimestre\sap\helpers\get_random_string;
-use function unimestre\sap\helpers\mime_to_ext;
-use function unimestre\sap\helpers\_parsejpg;
-use function unimestre\sap\helpers\_parsepng;
-use function unimestre\sap\helpers\p_error;
+use function unimestre\sapp\helpers\get_random_string;
+use function unimestre\sapp\helpers\mime_to_ext;
+use function unimestre\sapp\helpers\_parsejpg;
+use function unimestre\sapp\helpers\_parsepng;
+use function unimestre\sapp\helpers\p_error;
 
 function tx($x, $y) {
     return sprintf(" 1 0 0 1 %.2F %.2F cm", $x, $y);
