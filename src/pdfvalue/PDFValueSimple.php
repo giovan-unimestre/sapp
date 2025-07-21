@@ -19,7 +19,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace ddn\sapp\pdfvalue;
+namespace unimestre\sap\pdfvalue;
 
 class PDFValueSimple extends PDFValue {
     public function __construct($v) {

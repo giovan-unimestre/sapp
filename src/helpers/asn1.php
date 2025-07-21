@@ -1,5 +1,5 @@
 <?php
-namespace ddn\sapp\helpers;
+namespace unimestre\sap\helpers;
 /*
 // File name   : asn1.php
 // Version     : 1.0.1

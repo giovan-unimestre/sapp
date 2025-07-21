@@ -19,12 +19,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace ddn\sapp\helpers;
+namespace unimestre\sap\helpers;
 
 if (!defined('__CONVENIENT_MAX_BUFFER_DUMP'))
     define('__CONVENIENT_MAX_BUFFER_DUMP', 80);
 
-use function ddn\sapp\helpers\debug_var;
+use function unimestre\sap\helpers\debug_var;
 
 /**
  * This class is used to manage a buffer of characters. The main features are that

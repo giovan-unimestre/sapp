@@ -19,10 +19,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-use ddn\sapp\PDFDoc;
-use function ddn\sapp\helpers\p_debug_var;
-use function ddn\sapp\helpers\p_debug;
-use ddn\sapp\pdfvalue\PDFValueObject;
+use unimestre\sap\PDFDoc;
+use function unimestre\sap\helpers\p_debug_var;
+use function unimestre\sap\helpers\p_debug;
+use unimestre\sap\pdfvalue\PDFValueObject;
 
 require_once('vendor/autoload.php');
 

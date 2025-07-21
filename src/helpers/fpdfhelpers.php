@@ -33,8 +33,8 @@
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
 */
 
-namespace ddn\sapp\helpers;
-use function ddn\sapp\helpers\p_error;
+namespace unimestre\sap\helpers;
+use function unimestre\sap\helpers\p_error;
 
 function _parsejpg($filecontent)
 {

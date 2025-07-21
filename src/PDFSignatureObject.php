@@ -19,18 +19,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace ddn\sapp;
+namespace unimestre\sap;
 
-use ddn\sapp\PDFObject;
-use ddn\sapp\pdfvalue\PDFValue;
-use ddn\sapp\pdfvalue\PDFValueHexString;
-use ddn\sapp\pdfvalue\PDFValueList;
-use ddn\sapp\pdfvalue\PDFValueObject;
-use ddn\sapp\pdfvalue\PDFValueReference;
-use ddn\sapp\pdfvalue\PDFValueSimple;
-use ddn\sapp\pdfvalue\PDFValueString;
-use ddn\sapp\pdfvalue\PDFValueType;
-use function ddn\sapp\helpers\timestamp_to_pdfdatestring;
+use unimestre\sap\PDFObject;
+use unimestre\sap\pdfvalue\PDFValue;
+use unimestre\sap\pdfvalue\PDFValueHexString;
+use unimestre\sap\pdfvalue\PDFValueList;
+use unimestre\sap\pdfvalue\PDFValueObject;
+use unimestre\sap\pdfvalue\PDFValueReference;
+use unimestre\sap\pdfvalue\PDFValueSimple;
+use unimestre\sap\pdfvalue\PDFValueString;
+use unimestre\sap\pdfvalue\PDFValueType;
+use function unimestre\sap\helpers\timestamp_to_pdfdatestring;
 
 // This is an special object that has a set of fields
 class PDFSignatureObject extends PDFObject {
@@ -49,6 +49,10 @@ class PDFSignatureObject extends PDFObject {
     protected $_certificate = null;
     protected $_signature_ltv_data = null;
     protected $_signature_tsa = null;
+
+    protected $_metadata_certification = null;
+    protected $_metadata_certification_level = null;
+
     /**
      * Sets the certificate to use to sign
      * @param cert the pem-formatted certificate and private to use to sign as
@@ -155,5 +159,18 @@ class PDFSignatureObject extends PDFObject {
         );
 
         return parent::to_pdf_entry();
+    }
+
+    /**
+     * Summary of set_certification
+     * @param mixed $enabled
+     * @param mixed $level
+     * @return void
+     */
+    public function set_certification($enabled = true, $level = 3) {
+        $this->_metadata_certification = $enabled;
+        if (in_array($level, [1, 2, 3])) {
+            $this->_metadata_certification_level = $level;
+        }
     }
 }

@@ -19,7 +19,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace ddn\sapp\helpers;
+namespace unimestre\sap\helpers;
 
 if (! defined("_DEBUG_LEVEL")) {
     define('_DEBUG_LEVEL', 0);

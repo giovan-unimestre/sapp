@@ -19,9 +19,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace ddn\sapp\pdfvalue;
+namespace unimestre\sap\pdfvalue;
 use \ArrayAccess;
-use function ddn\sapp\helpers\p_debug_var;
+use function unimestre\sap\helpers\p_debug_var;
 
 class PDFValue implements ArrayAccess {
     protected $value = null;

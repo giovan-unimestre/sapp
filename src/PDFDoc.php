@@ -19,37 +19,37 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace ddn\sapp;
+namespace unimestre\sap;
 
-use ddn\sapp\PDFBaseDoc;
-use ddn\sapp\PDFBaseObject;
-use ddn\sapp\PDFSignatureObject;
-use ddn\sapp\pdfvalue\PDFValueObject;
-use ddn\sapp\pdfvalue\PDFValueList;
-use ddn\sapp\pdfvalue\PDFValueReference;
-use ddn\sapp\pdfvalue\PDFValueType;
-use ddn\sapp\pdfvalue\PDFValueSimple;
-use ddn\sapp\pdfvalue\PDFValueHexString;
-use ddn\sapp\pdfvalue\PDFValueString;
-use ddn\sapp\helpers\CMS;
-use ddn\sapp\helpers\x509;
-use ddn\sapp\helpers\asn1;
-use ddn\sapp\helpers\Buffer;
-use ddn\sapp\helpers\UUID;
-use ddn\sapp\helpers\DependencyTreeObject;
-use const ddn\sapp\helpers\BLACKLIST;
-use function ddn\sapp\helpers\references_in_object;
+use unimestre\sap\PDFBaseDoc;
+use unimestre\sap\PDFBaseObject;
+use unimestre\sap\PDFSignatureObject;
+use unimestre\sap\pdfvalue\PDFValueObject;
+use unimestre\sap\pdfvalue\PDFValueList;
+use unimestre\sap\pdfvalue\PDFValueReference;
+use unimestre\sap\pdfvalue\PDFValueType;
+use unimestre\sap\pdfvalue\PDFValueSimple;
+use unimestre\sap\pdfvalue\PDFValueHexString;
+use unimestre\sap\pdfvalue\PDFValueString;
+use unimestre\sap\helpers\CMS;
+use unimestre\sap\helpers\x509;
+use unimestre\sap\helpers\asn1;
+use unimestre\sap\helpers\Buffer;
+use unimestre\sap\helpers\UUID;
+use unimestre\sap\helpers\DependencyTreeObject;
+use const unimestre\sap\helpers\BLACKLIST;
+use function unimestre\sap\helpers\references_in_object;
 
-use function ddn\sapp\helpers\get_random_string;
-use function ddn\sapp\helpers\p_debug;
-use function ddn\sapp\helpers\p_debug_var;
-use function ddn\sapp\helpers\p_error;
-use function ddn\sapp\helpers\p_warning;
-use function ddn\sapp\helpers\_add_image;
-use function ddn\sapp\helpers\timestamp_to_pdfdatestring;
+use function unimestre\sap\helpers\get_random_string;
+use function unimestre\sap\helpers\p_debug;
+use function unimestre\sap\helpers\p_debug_var;
+use function unimestre\sap\helpers\p_error;
+use function unimestre\sap\helpers\p_warning;
+use function unimestre\sap\helpers\_add_image;
+use function unimestre\sap\helpers\timestamp_to_pdfdatestring;
 
 // Loading the functions
-use ddn\sapp\helpers\LoadHelpers;
+use unimestre\sap\helpers\LoadHelpers;
 if (!defined("ddn\\sapp\\helpers\\LoadHelpers"))
     new LoadHelpers;
 
@@ -77,6 +77,9 @@ class PDFDoc extends Buffer {
     protected $_metadata_reason = null;
     protected $_metadata_location = null;
     protected $_metadata_contact_info = null;
+
+    protected $_certify_document = false;
+    protected $_certify_level = null;
 
     // Array of pages ordered by appearance in the final doc (i.e. index 0 is the first page rendered; index 1 is the second page rendered, etc.)
     // Each entry is an array with the following fields:
@@ -296,7 +299,8 @@ class PDFDoc extends Buffer {
      * @return valid true if the certificate can be used to sign the document, false otherwise
      */
     public function set_signature_certificate($certfile, $certpass = null) {
-        // First we read the certificate
+        
+        //First we read the certificate
         if (is_array($certfile)) {
             $certificate = $certfile;
             $certificate["pkey"] = [$certificate["pkey"], $certpass];
@@ -314,10 +318,12 @@ class PDFDoc extends Buffer {
             }
         } else {
             $certfilecontent = file_get_contents($certfile);
-            if ($certfilecontent === false)
+            if ($certfilecontent === false) {
                 return p_error("could not read file $certfile");
-            if (openssl_pkcs12_read($certfilecontent, $certificate, $certpass) === false)
+            }
+            if (openssl_pkcs12_read($certfilecontent, $certificate, $certpass) === false) {
                 return p_error("could not get the certificates from file $certfile");
+            }
         }
 
         // Store the certificate
@@ -474,7 +480,7 @@ class PDFDoc extends Buffer {
             PDFSignatureObject::$__SIGNATURE_MAX_LENGTH = $len;
 
             $signature = $this->create_object([], PDFSignatureObject::class, false);
-            //$signature = new PDFSignatureObject([]);
+            
             $signature->set_metadata($this->_metadata_name, $this->_metadata_reason, $this->_metadata_location, $this->_metadata_contact_info);
             $signature->set_certificate($this->_certificate);
             if($this->_signature_tsa !== null) {
@@ -483,7 +489,7 @@ class PDFDoc extends Buffer {
             if($this->_signature_ltv_data !== null) {
               $signature->set_signature_ltv($this->_signature_ltv_data);
             }
-
+            $signature->set_certification($this->_certify_document, $this->_certify_level);
             // Update the value to the annotation object
             $annotation_object["V"] = new PDFValueReference($signature->get_oid());
         }
@@ -1255,5 +1261,12 @@ class PDFDoc extends Buffer {
             return p_error("failed to sign the document");
         }
         return PDFDoc::from_string($docsigned);
+    }
+
+    public function set_certification($enabled = true, $level = 3) {
+        $this->_certify_document = $enabled;
+        if (in_array($level, [1, 2, 3])) {
+            $this->_certify_level = $level;
+        }
     }
 }

@@ -36,7 +36,7 @@ $ composer require ddn/sapp:dev-main
 Then, a `vendor` folder will be created, and then you can simply include the main file and use the classes:
 
 ```php
-use ddn\sapp\PDFDoc;
+use unimestre\sap\PDFDoc;
 
 require_once('vendor/autoload.php');
 
@@ -116,7 +116,7 @@ xref
 **The code:**
 
 ```php
-use ddn\sapp\PDFDoc;
+use unimestre\sap\PDFDoc;
 
 require_once('vendor/autoload.php');
 
@@ -153,7 +153,7 @@ $ php pdfsign.php testdoc-signed.pdf user.p12 > testdoc-resigned.pdf
 **The code: (full working example)**
 
 ```php
-use ddn\sapp\PDFDoc;
+use unimestre\sap\PDFDoc;
 
 require_once('vendor/autoload.php');
 
@@ -203,7 +203,7 @@ And now the document is signed, and a cool image appears. If you wanted to add a
 **The code: (full working example)**
 
 ```php
-use ddn\sapp\PDFDoc;
+use unimestre\sap\PDFDoc;
 
 require_once('vendor/autoload.php');
 

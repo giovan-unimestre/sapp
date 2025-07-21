@@ -19,25 +19,25 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace ddn\sapp;
+namespace unimestre\sap;
 
-use ddn\sapp\PDFDoc;
-use ddn\sapp\PDFBaseObject;
-use ddn\sapp\pdfvalue\PDFValueObject;
-use ddn\sapp\pdfvalue\PDFValueList;
-use ddn\sapp\pdfvalue\PDFValueReference;
-use ddn\sapp\pdfvalue\PDFValueType;
-use ddn\sapp\pdfvalue\PDFValueSimple;
-use ddn\sapp\pdfvalue\PDFValueHexString;
-use ddn\sapp\pdfvalue\PDFValueString;
-use ddn\sapp\helpers\Buffer;
+use unimestre\sap\PDFDoc;
+use unimestre\sap\PDFBaseObject;
+use unimestre\sap\pdfvalue\PDFValueObject;
+use unimestre\sap\pdfvalue\PDFValueList;
+use unimestre\sap\pdfvalue\PDFValueReference;
+use unimestre\sap\pdfvalue\PDFValueType;
+use unimestre\sap\pdfvalue\PDFValueSimple;
+use unimestre\sap\pdfvalue\PDFValueHexString;
+use unimestre\sap\pdfvalue\PDFValueString;
+use unimestre\sap\helpers\Buffer;
 
-use function ddn\sapp\helpers\get_random_string;
-use function ddn\sapp\helpers\p_debug;
-use function ddn\sapp\helpers\p_error;
-use function ddn\sapp\helpers\p_warning;
-use function ddn\sapp\helpers\p_debug_var;
-use function ddn\sapp\helpers\_add_image;
+use function unimestre\sap\helpers\get_random_string;
+use function unimestre\sap\helpers\p_debug;
+use function unimestre\sap\helpers\p_error;
+use function unimestre\sap\helpers\p_warning;
+use function unimestre\sap\helpers\p_debug_var;
+use function unimestre\sap\helpers\_add_image;
 
 class PDFDocWithContents extends PDFDoc {
 
