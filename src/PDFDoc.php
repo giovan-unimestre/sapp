@@ -50,7 +50,9 @@ use function unimestre\sapp\helpers\timestamp_to_pdfdatestring;
 
 // Loading the functions
 use unimestre\sapp\helpers\LoadHelpers;
-if (!defined("ddn\\sapp\\helpers\\LoadHelpers"))
+use unimestre\sapp\pdfvalue\PDFValueDictionary;
+
+if (!defined("unimestre\\sapp\\helpers\\LoadHelpers"))
     new LoadHelpers;
 
 // TODO: move the signature of documents to a new class (i.e. PDFDocSignable)
@@ -376,12 +378,17 @@ class PDFDoc extends Buffer {
 
     // Convert string to UTF-16 Hexadecimal 
     private static function toUTF16Hex($string) {
-        $string = bin2hex(mb_convert_encoding($string, 'UTF-16BE'));
+        if (empty($string)) {
+            return null; // ou retorne '', mas não envie <FEFF> sozinho
+        }
 
-        // Add BOM
-        return 'FEFF' .$string;
+        // Codifica em UTF-16BE (sem BOM)
+        $utf16 = mb_convert_encoding($string, 'UTF-16BE', 'UTF-8');
+
+        // Adiciona BOM e converte para hexadecimal com prefixo < e sufixo >
+        return '<FEFF' . strtoupper(bin2hex($utf16)) . '>';
     }
-    /**
+        /**
      * Function that creates and updates the PDF objects needed to sign the document. The workflow for a signature is:
      * - create a signature object
      * - create an annotation object whose value is the signature object
@@ -489,11 +496,11 @@ class PDFDoc extends Buffer {
             if($this->_signature_ltv_data !== null) {
               $signature->set_signature_ltv($this->_signature_ltv_data);
             }
+            
             $signature->set_certification($this->_certify_document, $this->_certify_level);
             // Update the value to the annotation object
             $annotation_object["V"] = new PDFValueReference($signature->get_oid());
         }
-
         // If an image is provided, let's load it
         if ($imagefilename !== null) {
             // Signature with appearance, following the Adobe workflow:
@@ -596,6 +603,15 @@ class PDFDoc extends Buffer {
             return p_error("could not create the signature field");
         }
 
+        
+
+        // Configurar o campo /Perms no objeto raiz para certificação
+        if ($this->_certify_document && !isset($root_obj["Perms"])) {
+            $root_obj["Perms"] = new PDFValueObject([
+                "DocMDP" => new PDFValueReference($signature->get_oid())
+            ]);
+        }
+
         // Store the objects
         foreach ($updated_objects as &$object) {
             $this->add_object($object);
@@ -690,7 +706,7 @@ class PDFDoc extends Buffer {
      * @param value the value that the object will contain
      * @return obj the PDFObject created
      */
-    public function create_object($value = [], $class = "ddn\\sapp\\PDFObject", $autoadd = true): PDFObject {
+    public function create_object($value = [], $class = "unimestre\\sapp\\PDFObject", $autoadd = true): PDFObject {
         $o = new $class($this->get_new_oid(), $value);
         if ($autoadd === true)
             $this->add_object($o);
@@ -1092,7 +1108,7 @@ class PDFDoc extends Buffer {
             $val = $o->get_value();
 
             // We'll only consider those objects that may create an structure (i.e. the objects, whose fields may include references to other objects)
-            if (is_a($val, "ddn\\sapp\\pdfvalue\\PDFValueObject")) {
+            if (is_a($val, "unimestre\\sapp\\pdfvalue\\PDFValueObject")) {
                 $references = references_in_object($val, $oid);
             } else {
                 $references = $val->get_object_referenced();

@@ -87,14 +87,15 @@ class PDFSignatureObject extends PDFObject {
     public function __construct($oid) {
         $this->_prev_content_size = 0;
         $this->_post_content_size = null;
-        parent::__construct($oid, [
+        $ref = [
             'Filter' => "/Adobe.PPKLite",
             'Type' => "/Sig",
             'SubFilter' => "/adbe.pkcs7.detached",
             'ByteRange' => new PDFValueSimple(str_repeat(" ", self::$__BYTERANGE_SIZE)),
             'Contents' => "<" . str_repeat("0", self::$__SIGNATURE_MAX_LENGTH) . ">",
-            'M' => new PDFValueString(timestamp_to_pdfdatestring()),
-        ]);
+            'M' => new PDFValueString(timestamp_to_pdfdatestring())
+        ];
+        parent::__construct($oid, $ref);
     }
     /**
      * Function used to add some metadata fields to the signature: name, reason of signature, etc.
@@ -105,16 +106,16 @@ class PDFSignatureObject extends PDFObject {
      */
     public function set_metadata($name = null, $reason = null, $location = null, $contact = null) {
         if ($name !== null) {
-            $this->_value["Name"] = new PDFValueHexString($name);
+            $this->_value["Name"] = new PDFValueString($name);
         }
         if ($reason !== null) {
-            $this->_value["Reason"] = new PDFValueHexString($reason);
+            $this->_value["Reason"] = new PDFValueString($reason);
         }
         if ($location !== null) {
-            $this->_value["Location"] = new PDFValueHexString($location);
+            $this->_value["Location"] = new PDFValueString($location);
         }
         if ($contact !== null) {
-            $this->_value["ContactInfo"] = new PDFValueHexString($contact);
+            $this->_value["ContactInfo"] = new PDFValueString($contact);
         }
     }
     /**
@@ -168,9 +169,22 @@ class PDFSignatureObject extends PDFObject {
      * @return void
      */
     public function set_certification($enabled = true, $level = 3) {
-        $this->_metadata_certification = $enabled;
-        if (in_array($level, [1, 2, 3])) {
-            $this->_metadata_certification_level = $level;
+        if ($enabled) {
+            $this->_value["Reference"] = new PDFValueList([
+                new PDFValueObject([
+                    "TransformMethod" => "/DocMDP",
+                    "Type" => "/SigRef", // <-- Adicione este campo!
+                    "TransformParams" => new PDFValueObject([
+                        "Type" => "/TransformParams",
+                        "P" => $level, // Nível de permissão: 1, 2 ou 3
+                        "V" => "/1.2"
+                    ])
+                ])
+            ]);
         }
+    }
+
+    public function set_value($key, $value) {
+        $this->_value[$key] = $value;
     }
 }
